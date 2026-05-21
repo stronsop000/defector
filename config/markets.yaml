@@ -1,0 +1,29 @@
+# Markets to scrape. Each row = one (country, language) pair.
+# country: ISO 3166-1 alpha-2 (lowercase for Play Store, uppercase for Apple).
+# lang:    ISO 639-1.
+#
+# Comment out rows to skip a market. Add new rows to expand coverage.
+# Scraping cost is small — only pull markets where the apps actually have users.
+
+markets:
+  - country: us
+    lang: en
+    name: United States
+  - country: mx
+    lang: es
+    name: Mexico
+  - country: br
+    lang: pt
+    name: Brazil
+  - country: ar
+    lang: es
+    name: Argentina
+  - country: co
+    lang: es
+    name: Colombia
+  - country: cl
+    lang: es
+    name: Chile
+  - country: pe
+    lang: es
+    name: Peru

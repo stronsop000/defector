@@ -1,0 +1,159 @@
+# App universe for Defector.
+#
+# To add an app: append a new entry below with name + category. Run
+# `python -m scripts.resolve_app_ids --interactive` to auto-fill IDs (review
+# the candidates — store search is noisy).
+#
+# Categories:
+#   kinedu          - Kinedu itself (control)
+#   competitor      - Direct competitors: development activity / milestone apps
+#   tracker         - Adjacent: feeding/sleep/diaper logging apps
+#   early_education - Kids' content / curriculum
+#   brand_product   - Brand-companion apps for physical baby products
+#                     (the "baby products in general" segment — reviews
+#                     talk about the product, not the app)
+#   pregnancy       - Pregnancy-stage apps (prior journey)
+#   latam_specific  - Apps with significant LatAm presence
+#
+# Dropped during cleanup:
+#   Playfully - unpublished from Play Store Dec 2021, no longer fetchable
+#   Bobbie    - no consumer app (formula subscription only)
+#   BabyCenter Brasil - uses the same global app as US BabyCenter; one entry covers both
+
+apps:
+  # ============ KINEDU (control) ============
+  - name: Kinedu
+    category: kinedu
+    play_store_id: com.kinedu.appkinedu
+    app_store_id: 741277284
+
+  # ============ DIRECT COMPETITORS ============
+  - name: BabySparks
+    category: competitor
+    play_store_id: com.babysparks
+    app_store_id: 794574199
+  - name: Lovevery
+    category: competitor
+    play_store_id: com.lovevery.mobile.android
+    app_store_id: 1556748552
+  - name: The Wonder Weeks
+    category: competitor
+    play_store_id: org.twisevictory.apps.ex
+    app_store_id: 529815782
+  - name: BabyCenter
+    category: competitor
+    play_store_id: com.babycenter.pregnancytracker
+    app_store_id: 386022579
+    notes: One global app — serves US, BR, MX, etc. via locale switching
+  - name: Bebbo
+    category: competitor
+    play_store_id: null
+    app_store_id: 1588918146
+    notes: UNICEF-backed; strong in LatAm and Eastern Europe
+
+  # ============ TRACKERS ============
+  - name: Huckleberry
+    category: tracker
+    play_store_id: null
+    app_store_id: 1169136078
+  - name: Glow Baby
+    category: tracker
+    play_store_id: null
+    app_store_id: 1077177456
+  - name: Baby Tracker
+    category: tracker
+    play_store_id: com.nighp.babytracker_android
+    app_store_id: 779656557
+    notes: Nighp Software — one of the longest-running trackers
+  - name: Baby Daybook
+    category: tracker
+    play_store_id: null
+    app_store_id: 1446283219
+  - name: Sprout Baby
+    category: tracker
+    play_store_id: null
+    app_store_id: 551448817
+
+  # ============ EARLY EDUCATION ============
+  - name: Khan Academy Kids
+    category: early_education
+    play_store_id: null
+    app_store_id: 1378467217
+  - name: Lingokids
+    category: early_education
+    play_store_id: null
+    app_store_id: 1002043426
+  - name: HOMER
+    category: early_education
+    play_store_id: null
+    app_store_id: 1250049341
+  - name: ABCmouse
+    category: early_education
+    play_store_id: mobi.abcmouse.academy_goo
+    app_store_id: 586328581
+  - name: Cocomelon Play
+    category: early_education
+    play_store_id: null
+    app_store_id: 6498924680
+
+  # ============ BRAND-PRODUCT APPS (baby products in general) ============
+  - name: Pampers Rewards
+    category: brand_product
+    play_store_id: com.pg.clubpampers.android.us
+    app_store_id: 1224627026
+  - name: Huggies Rewards
+    category: brand_product
+    play_store_id: com.kcc.huggiesrewards
+    app_store_id: 1097164070
+  - name: Enfamil Family Beginnings
+    category: brand_product
+    play_store_id: null
+    app_store_id: 1445688776
+  - name: MySimilac Rewards
+    category: brand_product
+    play_store_id: null
+    app_store_id: 6744415578
+  - name: Owlet Dream
+    category: brand_product
+    play_store_id: null
+    app_store_id: 1590590105
+  - name: Happiest Baby
+    category: brand_product
+    play_store_id: null
+    app_store_id: 1562132169
+    notes: SNOO smart bassinet companion app
+  - name: Nanit
+    category: brand_product
+    play_store_id: null
+    app_store_id: 1137885597
+  - name: Frida
+    category: brand_product
+    play_store_id: null
+    app_store_id: 1565441092
+    notes: FeverFrida thermometer companion app
+
+  # ============ PREGNANCY ============
+  - name: What to Expect
+    category: pregnancy
+    play_store_id: null
+    app_store_id: 289560144
+  - name: Ovia Pregnancy
+    category: pregnancy
+    play_store_id: null
+    app_store_id: 570244389
+  - name: Pregnancy Plus
+    category: pregnancy
+    play_store_id: null
+    app_store_id: 505864483
+    notes: Philips — #1 pregnancy app globally, huge in Brazil
+  - name: Glow Pregnancy
+    category: pregnancy
+    play_store_id: null
+    app_store_id: 882398397
+
+  # ============ LATAM-SPECIFIC ============
+  - name: LactApp
+    category: latam_specific
+    play_store_id: null
+    app_store_id: 1040787494
+    notes: Spanish-language breastfeeding; strong in Spain + LatAm

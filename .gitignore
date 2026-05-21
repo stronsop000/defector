@@ -1,0 +1,23 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local data — large, regeneratable
+data/raw/
+data/reviews.duckdb
+data/reviews.duckdb.wal
+logs/
+
+# Keep these committed so the public dashboard isn't empty and the eval is reproducible:
+#   data/eval/   — labeled accuracy set (always committed)
+#   outputs/     — generated memos + ad copy + SEO + influencer + strengths briefs
+# Note: data/reviews.duckdb is gitignored above, but force-add it for Streamlit Cloud:
+#   git add -f data/reviews.duckdb
+!data/eval/
+
+# IDE
+.vscode/
+.idea/

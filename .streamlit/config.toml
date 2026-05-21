@@ -1,0 +1,20 @@
+# Streamlit theme + UX overrides for Defector.
+# These give the dashboard a consistent identity instead of the default look.
+
+[theme]
+base = "light"
+primaryColor = "#6366f1"            # indigo — matches the hero gradient
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f9fafb"
+textColor = "#111827"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"             # hide the "Deploy" + share buttons
+showErrorDetails = false            # judges/team don't need stack traces
+
+[ui]
+hideTopBar = false                  # keep the top bar but minimal toolbar
+
+[browser]
+gatherUsageStats = false            # respect privacy

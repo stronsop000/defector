@@ -1,0 +1,106 @@
+# Defection-topic taxonomy. Each category names a TOPIC parents talk about
+# (price, content, bugs, etc.). The classifier outputs both a category AND a
+# sentiment ('negative' | 'mixed' | 'positive'), so a single taxonomy serves
+# both complaints (defection signal) and praise (strength signal).
+#
+# Add/rename categories here and re-run `python -m src.classify` to relabel
+# — categories are stored alongside each row, not baked into the DB schema,
+# so taxonomy iteration is cheap.
+
+categories:
+  - key: price_value
+    label: Price / Value
+    description: "Topic: pricing, subscription cost, perceived value, billing experience. Negative examples: paywall too aggressive, hidden costs, auto-renew without warning, refund refused. Positive examples: great value at the price point, clear pricing, easy to cancel, fair refund."
+    examples:
+      - Too expensive for what you get
+      - I got charged after the trial without warning
+      - Worth every penny for what they provide
+      - Best value parenting app I have ever paid for
+
+  - key: content_quality
+    label: Content Quality / Depth
+    description: "Topic: depth, accuracy, freshness, and personalization of activities, articles, videos, or developmental content. Negative examples: shallow, repetitive, generic, outdated. Positive examples: research-backed, expert-quality, genuinely personalized, fresh."
+    examples:
+      - Same five activities repeated each week
+      - Content feels generic, not actually personalized
+      - Activities are research-backed and challenging at the right level
+      - The content here is the best I have found anywhere
+
+  - key: bugs_crashes
+    label: Bugs / Crashes / Performance
+    description: "Topic: technical reliability — crashes, freezes, sync, load time, data integrity. Negative examples: crashes, lost data, failed sync. Positive examples: rock solid, never crashes, fast and smooth."
+    examples:
+      - App crashes every time I open it
+      - Lost all my logged data after the update
+      - Fast, reliable, never had an issue
+      - Smooth performance even on my old phone
+
+  - key: ux_friction
+    label: UX / Ease of Use
+    description: "Topic: interface design, navigation, number of taps, clarity. Negative examples: confusing, cluttered, too many taps. Positive examples: intuitive, one-tap logging, clean and simple."
+    examples:
+      - Can't find anything in the menu
+      - Logging a feed takes 5 taps
+      - One-tap logging is brilliant
+      - Cleanest UI in the category — anything else feels clunky after this
+
+  - key: features_breadth
+    label: Features / Capabilities
+    description: "Topic: what the app can or cannot do — sync, offline, exports, multi-caregiver, multi-baby, integrations. Negative examples: missing key features. Positive examples: feature coverage exceeds competitors, indispensable capability."
+    examples:
+      - Needs a way for my partner to log feedings too
+      - No offline mode for travel
+      - Multi-caregiver sync just works, my husband sees everything
+      - The pediatrician export feature has saved me hours
+
+  - key: notifications_ads
+    label: Notifications / Ads / Spam
+    description: "Topic: pushes, emails, in-app marketing, third-party ads, upsells. Negative examples: nag prompts, popups, sponsored content overload. Positive examples: ad-free experience, notifications are useful and not spammy, opt-out actually works."
+    examples:
+      - 10 notifications a day asking me to upgrade
+      - Constant ads in a paid app
+      - No ads, ever, even on the free tier
+      - Push notifications are genuinely useful timing reminders
+
+  - key: trust_credibility
+    label: Trust / Expertise / Science
+    description: "Topic: scientific basis, source citations, expert advisors, medical safety. Negative examples: pseudoscience, no citations, contradicts pediatricians. Positive examples: cited research, pediatrician-approved, evidence-based."
+    examples:
+      - Sleep advice contradicts what my pediatrician said
+      - No sources cited for any of the claims
+      - Every claim is cited to peer-reviewed research
+      - My pediatrician recommended this and now I see why
+
+  - key: privacy_data
+    label: Privacy / Data
+    description: "Topic: data handling, account creation, third-party sharing, data export and deletion, permissions. Negative examples: data sold, overreaching permissions, no account deletion. Positive examples: transparent privacy, easy data export and deletion, no data sharing."
+    examples:
+      - Why does it need access to my contacts?
+      - Can't delete my account or export my data
+      - Easy to delete the account and export all my data
+      - Genuinely respects privacy — no third-party trackers
+
+  - key: localization
+    label: Localization / Cultural Fit
+    description: "Topic: translation quality, local language coverage, cultural and pediatric norms, units, holidays. Negative examples: machine-translated, US-centric content, missing language. Positive examples: high-quality native translation, content adapted to local norms."
+    examples:
+      - Translation to Spanish is robotic and full of errors
+      - Uses imperial units only, useless in my country
+      - The Portuguese version was clearly written by Brazilians, not translated
+      - Adapts vaccine schedules and milestones to my country
+
+  - key: customer_support
+    label: Customer Support
+    description: "Topic: responsiveness, helpfulness, refund handling, human vs bot. Negative examples: bot-only, unanswered, refund refused. Positive examples: fast human reply, refund honored, support solved the problem."
+    examples:
+      - Emailed support 3 times, never heard back
+      - Wouldn't refund after a charge error
+      - Support answered within 2 hours from a real human
+      - They refunded immediately when I asked, no hassle
+
+  - key: other
+    label: Other
+    description: "Use only when no other category fits and the comment is still substantive. Better to over-classify into a specific category than to default here."
+    examples:
+      - Closing my account because we moved past this stage of parenting
+      - We loved the app for two years, just outgrew it
