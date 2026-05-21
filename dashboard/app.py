@@ -171,13 +171,27 @@ default_since = (date.today() - timedelta(days=90)).isoformat()
 since_date = st.sidebar.date_input("Reviews since", value=date.fromisoformat(default_since))
 
 if not DB_PATH.exists():
-    st.error(f"No database found at {DB_PATH}. Run `python -m src.scrape` first.")
+    st.error(
+        f"No database found at `{DB_PATH}`.\n\n"
+        "This usually means the scraper hasn't run yet. From the project root, run:\n\n"
+        "```bash\n"
+        "python -m src.scrape\n"
+        "python -m scripts.seed_demo_data    # optional — populates demo clusters\n"
+        "```\n\n"
+        "Then refresh this page. See `docs/ONBOARDING.md` for the full quickstart."
+    )
     st.stop()
 
 df = base_reviews_df(since_date.isoformat())
 
 if df.empty:
-    st.warning("No reviews in the selected window. Try widening the date range or running the scraper.")
+    st.warning(
+        "No reviews in the selected window.\n\n"
+        "**If this is a fresh install:** seed the dashboard with demo data — run "
+        "`python -m scripts.seed_demo_data` then refresh.\n\n"
+        "**If real data should be here:** widen the *Reviews since* filter in the sidebar, "
+        "or run `python -m src.scrape` to pull fresh reviews from the app stores."
+    )
     st.stop()
 
 countries = sorted(df["country"].dropna().unique().tolist())
@@ -419,38 +433,61 @@ with tab_explore:
 
 
 # === Outputs ===
-with tab_outputs:
-    st.subheader("Weekly intelligence memo")
-    memo_dir = ROOT / "outputs" / "memos"
-    if memo_dir.exists():
-        memos = sorted(memo_dir.glob("*.md"), reverse=True)
-        if memos:
-            pick = st.selectbox("Memo", [m.name for m in memos], index=0, key="memo_pick")
-            st.markdown((memo_dir / pick).read_text(encoding="utf-8"))
-        else:
-            st.info("No memos yet. Run `python -m src.synthesize`.")
-    else:
-        st.info("No memos yet. Run `python -m src.synthesize`.")
+def _render_output_picker(label: str, dirpath, key: str, empty_hint: str) -> None:
+    """Render a selectbox + viewer + download button for one outputs/ subdir."""
+    st.subheader(label)
+    if not dirpath.exists() or not list(dirpath.glob("*.md")):
+        st.info(empty_hint)
+        return
+    files = sorted(dirpath.glob("*.md"), reverse=True)
+    pick = st.selectbox(label, [f.name for f in files], index=0, key=key, label_visibility="collapsed")
+    content = (dirpath / pick).read_text(encoding="utf-8")
+    col_dl, col_spacer = st.columns([1, 5])
+    with col_dl:
+        st.download_button(
+            "⬇ Download .md",
+            data=content,
+            file_name=pick,
+            mime="text/markdown",
+            key=f"dl_{key}",
+        )
+    st.markdown(content)
 
+
+with tab_outputs:
+    st.caption(
+        "Generated weekly by the synthesize pipeline. Each section below has a download button — "
+        "hand the file directly to the marketing, content, or partnerships team. New files appear "
+        "every Monday after the GitHub Actions cron completes."
+    )
+
+    _render_output_picker(
+        "Switching Opportunities memo",
+        ROOT / "outputs" / "memos",
+        key="memo_pick",
+        empty_hint="No memos yet. Run `python -m src.synthesize` (locally) or trigger the weekly workflow.",
+    )
+    st.divider()
+
+    _render_output_picker(
+        "Competitor Strengths memo",
+        ROOT / "outputs" / "strengths",
+        key="strengths_pick",
+        empty_hint="No strengths memo yet. Requires positive-sentiment classifications — run `python -m src.classify` then `python -m src.synthesize`.",
+    )
     st.divider()
 
     # Per-opportunity artifacts grouped by output kind
     output_kinds = [
-        ("Ad copy (Meta / Google / push)", ROOT / "outputs" / "copy"),
-        ("SEO comparison-page briefs", ROOT / "outputs" / "seo"),
-        ("Influencer / partner briefs", ROOT / "outputs" / "influencer"),
+        ("Ad copy (Meta / Google / push)", ROOT / "outputs" / "copy",
+         "No ad copy yet. Run `python -m src.synthesize` to generate per-opportunity ad packages."),
+        ("SEO comparison-page briefs", ROOT / "outputs" / "seo",
+         "No SEO briefs yet. Run `python -m src.synthesize` to generate comparison-page briefs."),
+        ("Influencer / partner briefs", ROOT / "outputs" / "influencer",
+         "No influencer briefs yet. Run `python -m src.synthesize` to generate."),
     ]
-    for label, d in output_kinds:
-        st.subheader(label)
-        if d.exists():
-            files = sorted(d.glob("*.md"), reverse=True)
-            if files:
-                pick = st.selectbox(label, [f.name for f in files], index=0, key=f"pick_{d.name}")
-                st.markdown((d / pick).read_text(encoding="utf-8"))
-            else:
-                st.info(f"No files in `outputs/{d.name}/` yet.")
-        else:
-            st.info(f"`outputs/{d.name}/` does not exist yet.")
+    for label, d, empty in output_kinds:
+        _render_output_picker(label, d, key=f"pick_{d.name}", empty_hint=empty)
         st.divider()
 
 
