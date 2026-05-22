@@ -43,11 +43,29 @@ st.markdown(
         --quote-bg: #f5efe1;
     }
 
-    html, body, [class*="st-"], .stApp {
+    html, body, .stApp {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         color: var(--ink);
     }
     .stApp { background: var(--bg); }
+
+    /* Body text inside Streamlit content uses Inter — but don't blanket-override
+       every st- class, that breaks Material Symbols icon fonts (chevrons, etc). */
+    .stMarkdown, .stText, .stCaption,
+    [data-testid="stMarkdownContainer"],
+    [data-testid="stSidebar"] *,
+    [data-baseweb="select"] *,
+    [data-baseweb="tab"] {
+        font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* Explicitly restore Material Symbols on the icon spans so chevrons render. */
+    [class*="material-symbols"],
+    [class*="MaterialSymbols"],
+    [data-testid="stExpander"] details summary svg,
+    [data-testid="stExpander"] details summary span[class*="icon"] {
+        font-family: 'Material Symbols Outlined', 'Material Icons' !important;
+    }
 
     h1, h2, h3, h4, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
         font-family: 'Fraunces', 'Times New Roman', Georgia, serif;
