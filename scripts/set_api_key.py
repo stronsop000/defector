@@ -42,7 +42,7 @@ def read_env() -> dict[str, str]:
 def write_env(pairs: dict[str, str]) -> None:
     # Preserve a friendly header
     lines = [
-        "# Defector env — gitignored. Never commit this file.",
+        "# Parent Feedback env — gitignored. Never commit this file.",
         "# Get a free Gemini key at https://aistudio.google.com/apikey",
         "",
     ]

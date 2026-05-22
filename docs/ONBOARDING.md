@@ -1,8 +1,8 @@
-# Onboarding — Taking over Defector
+# Onboarding — Taking over Parent Feedback
 
-You're inheriting Defector. Read this once (~10 min). After that you can run, maintain, and extend it without help from the original author.
+You're inheriting Parent Feedback. Read this once (~10 min). After that you can run, maintain, and extend it without help from the original author.
 
-## What Defector is
+## What Parent Feedback is
 
 A weekly-refreshing multilingual marketing-intelligence pipeline for parenting and baby-product apps. It scrapes public app store reviews, classifies why parents praise or leave competitors, and auto-generates marketing copy, SEO briefs, and influencer talking points for Kinedu.
 
@@ -54,7 +54,7 @@ Your only proactive job is **deciding what the team should do with the outputs**
 - Pull SEO briefs and hand to content team
 - Once a quarter, summarize feature-gap themes for the product team
 
-These are the workflows that turn data into decisions. Without them, Defector becomes a dashboard nobody opens.
+These are the workflows that turn data into decisions. Without them, Parent Feedback becomes a dashboard nobody opens.
 
 ## What to do if you want to change something
 
@@ -72,7 +72,7 @@ These are the workflows that turn data into decisions. Without them, Defector be
 | Resource | Free tier limit | What happens at the boundary |
 |---|---|---|
 | Gemini 2.5 Flash | ~1500 req/day | Pipeline rate-limits gracefully (`src/llm.py` paces at 8 RPM). For >1500 reviews/day, the next day's cron picks up the rest. |
-| GitHub Actions | 2000 min/month free for public repos | Defector uses ~30 min/week; way under. |
+| GitHub Actions | 2000 min/month free for public repos | Parent Feedback uses ~30 min/week; way under. |
 | Streamlit Cloud | 1 GB RAM per app | The DuckDB + dashboard fits comfortably. |
 | App store scrapers | No formal limit but informal rate caps | `tenacity` retries with backoff handle the rare 429. |
 
@@ -98,4 +98,4 @@ When you're confident you own this:
 - [ ] You've subscribed to GitHub repo notifications so failed cron runs email you
 - [ ] You've identified at least one consumer of the memo at Kinedu (marketing, content, partnerships, or product lead) and forwarded them the first memo
 
-That's the handoff complete. Defector now operates without the original author.
+That's the handoff complete. Parent Feedback now operates without the original author.

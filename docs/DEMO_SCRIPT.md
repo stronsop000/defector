@@ -1,4 +1,4 @@
-# 5-minute Demo Script — Defector
+# 5-minute Demo Script — Parent Feedback
 
 Read-aloud script for the recorded video (or live presentation) demo.
 Placeholders in `{curly_braces}` are real numbers you'll fill in after the
@@ -11,14 +11,14 @@ for transitions.
 
 > **[on screen: the dashboard Opportunities tab, prefiltered to the top 3]**
 
-"Hi, I'm Sophia, and this is Defector.
+"Hi, I'm Sophia, and this is Parent Feedback.
 
 Every week, thousands of parents publicly post why they're leaving Lovevery,
 BabySparks, BabyCenter, Pampers Rewards, and every other brand we compete
 with for parent attention. It's in their App Store reviews. It's all public.
 Nobody at Kinedu reads it systematically.
 
-Defector does. In three languages, across thirty apps, across seven markets,
+Parent Feedback does. In three languages, across thirty apps, across seven markets,
 every week."
 
 ---
@@ -68,7 +68,7 @@ Listen to them in their own words.
 "[Read one quote aloud, then a second one.]
 
 This is the data the marketing team would otherwise pay an agency to gather
-in a quarterly study. Defector refreshes it weekly. No human labor."
+in a quarterly study. Parent Feedback refreshes it weekly. No human labor."
 
 ---
 
@@ -76,7 +76,7 @@ in a quarterly study. Defector refreshes it weekly. No human labor."
 
 > **[switch to: Generated Outputs tab → Ad copy section → pick one file]**
 
-"For each opportunity, Defector writes four artifacts. Here's the ad-copy
+"For each opportunity, Parent Feedback writes four artifacts. Here's the ad-copy
 package for the {TOP_OPP_APP} opportunity. Three Meta headlines, three
 primary text variants, a landing page hero, two push notifications — all in
 the parents' own language, in this case {LANGUAGE}. Notice the hook uses

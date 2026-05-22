@@ -1,4 +1,4 @@
-# Defector — AI Challenge Proposal
+# Parent Feedback — AI Challenge Proposal
 
 **Owner:** Sophia Strong • Partnerships
 **Status:** Working prototype already running. Submitting full deliverable by May 31.
@@ -19,7 +19,7 @@ Off-the-shelf competitive-intel tools mostly read English. For a LatAm-focused c
 
 ## What I'm building
 
-**Defector** — a four-step pipeline, all from public data:
+**Parent Feedback** — a four-step pipeline, all from public data:
 
 1. **Scrape** App Store + Play Store reviews for ~30 apps across 7 markets (US, MX, BR, AR, CO, CL, PE), 3 languages (EN / ES / PT). Public, idempotent, refreshes weekly via cron.
 2. **Classify** each 1★/2★ review with Claude into one of 11 defection-reason categories (price, content quality, bugs, UX friction, missing features, notifications, trust, privacy, localization, support, other). Forced-JSON tool output for reliability. Accuracy measured against a hand-labeled eval set.
@@ -36,7 +36,7 @@ I'm being honest about the value chain — judges will probe.
 
 | Team | Artifact they use | KPI it moves |
 |---|---|---|
-| Performance marketing | Ad copy variants in EN/ES/PT, grounded in verbatim parent language | Creative-test hit rate; CPM × CTR on Defector-briefed variants vs. baseline. Realistic lift: 10-30% on creative tests, which compounds over a quarter. |
+| Performance marketing | Ad copy variants in EN/ES/PT, grounded in verbatim parent language | Creative-test hit rate; CPM × CTR on Parent Feedback-briefed variants vs. baseline. Realistic lift: 10-30% on creative tests, which compounds over a quarter. |
 | Content / SEO | Weekly comparison-page briefs ("Lovevery alternative — what parents say") | New comparison articles shipped per month; organic traffic to those URLs. Realistic: 2-3 new articles/month, compounding organic. |
 | Product | Quarterly competitor feature-gap memo | Roadmap input; we measure usage, not ship. Cheaper than running user interviews. |
 | Partnerships | Market-specific intelligence in the dashboard | Pitch evidence — "in Brazil parents talk about X 3× more than in the US" lands better than a generic deck. |
@@ -45,7 +45,7 @@ I'm not promising direct CAC attribution in two weeks. The realistic story is **
 
 ## Why this and not something closer to my role
 
-I considered building further automation on top of my partnership outreach pipeline, but most of the easy wins there are already captured by my Airtable + Claude setup. Defector is a bigger lever on breakeven because it touches three high-leverage acquisition channels (paid creative, SEO, influencer) plus product and partnerships. It's also fully cross-functional, so the artifact has natural owners beyond me, which strengthens the adoption story.
+I considered building further automation on top of my partnership outreach pipeline, but most of the easy wins there are already captured by my Airtable + Claude setup. Parent Feedback is a bigger lever on breakeven because it touches three high-leverage acquisition channels (paid creative, SEO, influencer) plus product and partnerships. It's also fully cross-functional, so the artifact has natural owners beyond me, which strengthens the adoption story.
 
 ## What's already done (as of May 18)
 

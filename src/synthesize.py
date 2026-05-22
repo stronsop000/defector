@@ -198,7 +198,7 @@ def _opp_context_block(opp: dict) -> str:
 
 def generate_copy(opp: dict) -> str:
     system = (
-        "You are a senior performance marketer at Kinedu writing conversion copy briefed by Defector — "
+        "You are a senior performance marketer at Kinedu writing conversion copy briefed by Parent Feedback — "
         "a system that mines verbatim complaints from parents who are leaving competing parenting apps. "
         "Mirror the parents' own language (use their verbatim complaints as raw material). Be specific, "
         "concrete, and emotionally intelligent — not salesy. "

@@ -1,4 +1,4 @@
-"""Defector dashboard.
+"""Parent Feedback dashboard.
 
 Run from project root:
     streamlit run dashboard/app.py
@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.config import DB_PATH, ROOT, load_taxonomy  # noqa: E402
 
-st.set_page_config(page_title="Defector — a weekly reading of what parents say", layout="wide", page_icon=":newspaper:")
+st.set_page_config(page_title="Parent Feedback — a weekly reading of what parents say", layout="wide", page_icon=":newspaper:")
 
 st.markdown(
     """
@@ -343,7 +343,7 @@ st.markdown(
     f"""
     <div class="editorial-hero">
         <div class="masthead">Vol. 1 &nbsp;·&nbsp; Issue {_issue_num} &nbsp;·&nbsp; Week of {_week_label}</div>
-        <h1>Defector</h1>
+        <h1>Parent Feedback</h1>
         <div class="lede">
             A weekly reading of what parents say about every parenting app —
             in the markets that matter, in the languages they speak,
@@ -364,7 +364,7 @@ st.markdown(
 with st.expander("On method"):
     st.markdown(
         """
-        Defector reads thirty parenting and baby-product apps every week — Lovevery,
+        Parent Feedback reads thirty parenting and baby-product apps every week — Lovevery,
         BabyCenter, BabySparks, Pampers Rewards, Huggies, Wonder Weeks, and twenty-four
         others. It pulls public reviews from Apple's App Store and Google Play across
         seven countries in English, Spanish, and Portuguese.
@@ -717,7 +717,7 @@ with tab_outputs:
 st.markdown(
     """
     <div class="footer">
-      Defector <span class="sep">·</span>
+      Parent Feedback <span class="sep">·</span>
       A weekly reading <span class="sep">·</span>
       <a href="https://github.com/stronsop000/defector" target="_blank">Source on GitHub</a> <span class="sep">·</span>
       Built for the Kinedu AI Challenge, May 2026

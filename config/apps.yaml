@@ -1,4 +1,4 @@
-# App universe for Defector.
+# App universe for Parent Feedback.
 #
 # To add an app: append a new entry below with name + category. Run
 # `python -m scripts.resolve_app_ids --interactive` to auto-fill IDs (review

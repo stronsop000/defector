@@ -8,7 +8,7 @@ captured now so the work is shovel-ready the moment the prize is in.
 Streamlit Cloud is the right deploy target for the prize submission — free,
 fast, public URL in 5 minutes. But Streamlit looks like a Python notebook
 with a CSS skin. If we want Kinedu's marketing, SEO, product, and
-partnerships teams to actually open and use Defector as a recurring tool,
+partnerships teams to actually open and use Parent Feedback as a recurring tool,
 it needs to look and feel like a product, not a dashboard.
 
 The Phase 2 goal: a Vercel-hosted Next.js app at `defector.kinedu.com` (or

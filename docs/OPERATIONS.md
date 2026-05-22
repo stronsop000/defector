@@ -95,7 +95,7 @@ If you ever see a bill, something was changed. Check `.env` and `requirements.tx
 ## When to escalate / rebuild
 
 You should rewrite or restructure if:
-- Defector becomes the primary source of strategic input for >5 teams and Streamlit's read-mostly UI feels limiting → execute `docs/PHASE_2_VERCEL.md`
+- Parent Feedback becomes the primary source of strategic input for >5 teams and Streamlit's read-mostly UI feels limiting → execute `docs/PHASE_2_VERCEL.md`
 - A regulatory issue arises with scraping a specific store → drop that source from `config/`
 - You need historical reviews older than ~500 most-recent (Apple RSS cap) → consider a paid scraper provider
 

@@ -1,4 +1,4 @@
-<h1 align="center">Defector</h1>
+<h1 align="center">Parent Feedback</h1>
 
 <p align="center">
   <b>Multilingual marketing intelligence + copy generation for parenting and baby-product apps across the Americas.</b><br>
@@ -20,7 +20,7 @@
 
 Every week, thousands of parents publicly post **why** they're leaving Lovevery, BabyCenter, BabySparks, Pampers Rewards, Huggies, Wonder Weeks, and every other brand competing for parent attention. It's all in their App Store reviews. **Nobody at Kinedu reads it systematically.**
 
-Defector does. In **3 languages**, across **30 apps**, across **7 markets**, every week — and turns it into ad copy, SEO briefs, and influencer talking points the Kinedu growth team can ship on Monday morning.
+Parent Feedback does. In **3 languages**, across **30 apps**, across **7 markets**, every week — and turns it into ad copy, SEO briefs, and influencer talking points the Kinedu growth team can ship on Monday morning.
 
 > 🔗 **Live dashboard:** **https://defector.streamlit.app/**
 > 📊 **What it produces this week:** see `outputs/memos/`, `outputs/copy/`, `outputs/seo/`, `outputs/influencer/`, `outputs/strengths/`
@@ -267,7 +267,7 @@ Grow this file with edge cases as you spot them — it's how the taxonomy gets s
 $action  = New-ScheduledTaskAction -Execute "C:\Users\sophi\OneDrive\Kinedu\defector\run_weekly.bat"
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 9:00am
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
-Register-ScheduledTask -TaskName "Defector-Weekly" -Action $action -Trigger $trigger -Settings $settings
+Register-ScheduledTask -TaskName "Parent Feedback-Weekly" -Action $action -Trigger $trigger -Settings $settings
 ```
 
 ### GitHub Actions
@@ -295,13 +295,15 @@ Register-ScheduledTask -TaskName "Defector-Weekly" -Action $action -Trigger $tri
 
 ## Why this exists
 
-Built for the Kinedu AI Challenge. The challenge brief: use AI to move a real KPI on the path to breakeven. Defector targets **marketing efficiency** — higher creative-test hit rate, more SEO comparison content shipped per month, cheaper competitive intel than user research, and weekly-refreshed pitch evidence for partnership conversations.
+Built for the Kinedu AI Challenge. The challenge brief: use AI to move a real KPI on the path to breakeven. Parent Feedback targets **marketing efficiency** — higher creative-test hit rate, more SEO comparison content shipped per month, cheaper competitive intel than user research, and weekly-refreshed pitch evidence for partnership conversations.
 
 Public GitHub. Public Streamlit URL. Reproducible from scratch in 20 minutes with a free API key.
 
 —
 
 Made by [Sophia Strong](https://github.com/) · MIT licensed
-#   d e f e c t o r  
- #   d e f e c t o r  
+#   d e f e c t o r 
+ 
+ #   d e f e c t o r 
+ 
  

@@ -1,10 +1,10 @@
-# How to use Defector — guide for the Kinedu team
+# How to use Parent Feedback — guide for the Kinedu team
 
-If you're on marketing, content, product, or partnerships and someone said *"check Defector"* — this is what to do. Five-minute read.
+If you're on marketing, content, product, or partnerships and someone said *"check Parent Feedback"* — this is what to do. Five-minute read.
 
 ## What is this?
 
-Every Monday, Defector reads thousands of public reviews of competing parenting and baby-product apps (Lovevery, BabyCenter, BabySparks, Pampers Rewards, Huggies, Wonder Weeks, and 24 others) across the US and Latin America in English, Spanish, and Portuguese. It categorizes why parents praise or leave them, and writes:
+Every Monday, Parent Feedback reads thousands of public reviews of competing parenting and baby-product apps (Lovevery, BabyCenter, BabySparks, Pampers Rewards, Huggies, Wonder Weeks, and 24 others) across the US and Latin America in English, Spanish, and Portuguese. It categorizes why parents praise or leave them, and writes:
 
 - A **Switching Opportunities memo** — where parents are publicly leaving competitors and what to say to win them
 - A **Competitor Strengths memo** — what competitors do well that Kinedu should match or position against
@@ -63,7 +63,7 @@ Files are dated. Newest is most recent.
 
 **Monthly:** read the latest Switching Opportunities memo. The opening paragraph names the top 3 places this month where parents are publicly leaving competitors. That's where the cheap conversions live.
 
-## How to brief a teammate on Defector in 60 seconds
+## How to brief a teammate on Parent Feedback in 60 seconds
 
 > *Public reviews of every parenting app, classified into 11 reasons parents praise or leave them, refreshed weekly, with ready-to-ship ad copy, SEO briefs, and influencer briefs in EN/ES/PT. The dashboard is at [URL], the files are in this GitHub repo. Marketing uses the ad copy. Content uses the SEO briefs. Product uses the feature-gap signal. Partnerships uses the quotes for pitch evidence.*
 

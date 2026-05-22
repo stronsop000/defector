@@ -1,4 +1,4 @@
-# Pushing Defector to a public GitHub repo
+# Pushing Parent Feedback to a public GitHub repo
 
 Goal: a clean, public, portfolio-grade repo at `github.com/<your-handle>/defector`
 without ever exposing your API key.
@@ -24,7 +24,7 @@ You should see `.env` near the top. Don't proceed if you don't.
 git init -b main
 git add .
 git status                              # CRITICAL: scan the list. .env must NOT appear.
-git commit -m "Initial commit: Defector — competitor switching intelligence"
+git commit -m "Initial commit: Parent Feedback — competitor switching intelligence"
 ```
 
 If `.env` shows up in `git status` before the commit, STOP and add it to `.gitignore`:

@@ -7,13 +7,13 @@ in the bracketed values after deploy + demo recording.
 
 ## Project name
 
-> Defector — Multilingual Marketing Intelligence + Copy Engine
+> Parent Feedback — Multilingual Marketing Intelligence + Copy Engine
 
 ---
 
 ## Short description (max 200 words)
 
-> Defector is a marketing-intelligence and copy-generation engine that
+> Parent Feedback is a marketing-intelligence and copy-generation engine that
 > mines public 1- and 2-star reviews from 30 parenting and baby-product
 > apps across 7 markets in the Americas (US, MX, BR, AR, CO, CL, PE) in
 > English, Spanish, and Portuguese. A Gemini-based classifier sorts each

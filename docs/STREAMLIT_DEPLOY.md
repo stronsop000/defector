@@ -1,4 +1,4 @@
-# Deploying the Defector dashboard to Streamlit Community Cloud
+# Deploying the Parent Feedback dashboard to Streamlit Community Cloud
 
 Goal: a public URL like `defector.streamlit.app` that anyone (your leader,
 the judges, future employers) can open and see the live dashboard.
@@ -63,7 +63,7 @@ First build takes ~3-5 min (installing requirements). Subsequent reboots are
 
 ## After deploy
 
-Open the URL. You should see the Defector header, KPI cards populated, and
+Open the URL. You should see the Parent Feedback header, KPI cards populated, and
 the four tabs.
 
 Things to verify:
