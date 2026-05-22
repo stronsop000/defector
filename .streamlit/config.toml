@@ -1,20 +1,18 @@
-# Streamlit theme + UX overrides for Defector.
-# These give the dashboard a consistent identity instead of the default look.
+# Streamlit theme — Defector editorial palette.
+# Warm cream background, deep ink, terracotta accent. Reads more like
+# a publication than a SaaS dashboard.
 
 [theme]
 base = "light"
-primaryColor = "#6366f1"            # indigo — matches the hero gradient
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f9fafb"
-textColor = "#111827"
-font = "sans serif"
+primaryColor = "#b8443a"             # terracotta accent (sparingly)
+backgroundColor = "#fdfaf3"           # warm cream — newsprint feel
+secondaryBackgroundColor = "#f5efe1"  # slightly deeper cream for sidebars/cards
+textColor = "#1a1a1a"                 # deep ink
+font = "serif"
 
 [client]
-toolbarMode = "minimal"             # hide the "Deploy" + share buttons
-showErrorDetails = false            # judges/team don't need stack traces
-
-[ui]
-hideTopBar = false                  # keep the top bar but minimal toolbar
+toolbarMode = "minimal"
+showErrorDetails = false
 
 [browser]
-gatherUsageStats = false            # respect privacy
+gatherUsageStats = false

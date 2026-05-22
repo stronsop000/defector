@@ -45,8 +45,8 @@ in the bracketed values after deploy + demo recording.
 
 ## Link to tool / document / workflow
 
-> Public GitHub repo: https://github.com/{your-handle}/defector
-> Live dashboard: https://{your-subdomain}.streamlit.app
+> Public GitHub repo: https://github.com/stronsop000/defector
+> Live dashboard: https://defector.streamlit.app/
 
 ---
 

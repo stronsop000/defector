@@ -16,7 +16,7 @@ All in the parents' own language, in the right market language.
 
 ## Where to find it
 
-**Public dashboard:** [Streamlit Cloud URL — added after deploy]
+**Public dashboard:** https://defector.streamlit.app/
 
 **Files in the repo:** https://github.com/stronsop000/defector
 - `outputs/memos/` — weekly switching memo

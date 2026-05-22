@@ -22,79 +22,287 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.config import DB_PATH, ROOT, load_taxonomy  # noqa: E402
 
-st.set_page_config(page_title="Defector — Competitor Switching Intelligence", layout="wide", page_icon=":dart:")
+st.set_page_config(page_title="Defector — a weekly reading of what parents say", layout="wide", page_icon=":newspaper:")
 
 st.markdown(
     """
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-    /* hero */
-    .hero {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #ec4899 100%);
-        color: white; padding: 2rem 2rem 1.5rem 2rem; border-radius: 14px;
+    :root {
+        --bg: #fdfaf3;
+        --ink: #1a1a1a;
+        --ink-soft: #3d3d3d;
+        --muted: #8a7f73;
+        --border: #e6dfd0;
+        --rule: #d6cdb9;
+        --terracotta: #b8443a;
+        --sage: #3a6b5c;
+        --quote-bg: #f5efe1;
+    }
+
+    html, body, [class*="st-"], .stApp {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--ink);
+    }
+    .stApp { background: var(--bg); }
+
+    h1, h2, h3, h4, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+        font-family: 'Fraunces', 'Times New Roman', Georgia, serif;
+        color: var(--ink);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+    }
+
+    /* ---------- Editorial hero ---------- */
+    .editorial-hero {
+        margin: 0.5rem 0 2.5rem 0;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--rule);
+    }
+    .editorial-hero .masthead {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+    .editorial-hero h1 {
+        font-family: 'Fraunces', serif;
+        font-size: 4.5rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.0;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+    }
+    .editorial-hero .lede {
+        font-family: 'Fraunces', serif;
+        font-size: 1.35rem;
+        line-height: 1.45;
+        color: var(--ink-soft);
+        font-weight: 400;
+        font-style: italic;
+        max-width: 720px;
+        margin-top: 1.25rem;
+    }
+    .editorial-hero .byline {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 1.75rem;
+        font-weight: 500;
+    }
+    .editorial-hero .byline .sep { margin: 0 0.6rem; color: var(--rule); }
+
+    /* ---------- Reading line (replaces KPI tiles) ---------- */
+    .reading-line {
+        font-family: 'Fraunces', serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+        color: var(--ink);
+        line-height: 1.5;
+        padding: 0 0 1.75rem 0;
         margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--rule);
+        max-width: 820px;
     }
-    .hero h1 { color: white; font-size: 2.4rem; margin: 0 0 0.25rem 0; letter-spacing: -0.02em; }
-    .hero p  { color: #ede9fe; font-size: 1.05rem; margin: 0; max-width: 900px; line-height: 1.5; }
-    .hero .pill {
-        display: inline-block; background: rgba(255,255,255,0.18);
-        padding: 2px 10px; border-radius: 999px; font-size: 0.8rem;
-        margin-right: 6px; margin-top: 10px;
+    .reading-line .num { font-weight: 600; color: var(--ink); }
+    .reading-line .neg { color: var(--terracotta); font-weight: 600; }
+    .reading-line .pos { color: var(--sage); font-weight: 600; }
+
+    /* ---------- Opportunity / Strength briefs ---------- */
+    .brief {
+        display: grid;
+        grid-template-columns: 4.5rem 1fr;
+        gap: 1.75rem;
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    .brief .rank {
+        font-family: 'Fraunces', serif;
+        font-size: 3.5rem;
+        font-weight: 400;
+        color: var(--terracotta);
+        line-height: 0.9;
+        font-style: italic;
+    }
+    .brief.positive .rank { color: var(--sage); }
+    .brief .kicker {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+    }
+    .brief h3 {
+        font-family: 'Fraunces', serif;
+        font-size: 1.55rem;
+        font-weight: 500;
+        margin: 0 0 0.6rem 0;
+        line-height: 1.2;
+        color: var(--ink);
+    }
+    .brief .stats {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.88rem;
+        color: var(--ink-soft);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    .brief .stats .num { font-weight: 600; color: var(--ink); }
+
+    /* ---------- Pull-quotes ---------- */
+    .editorial-quote {
+        font-family: 'Fraunces', serif;
+        font-size: 1.1rem;
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--ink);
+        border-left: 2px solid var(--terracotta);
+        padding: 0.15rem 0 0.15rem 1.25rem;
+        margin: 0.6rem 0;
+        max-width: 700px;
+    }
+    .brief.positive .editorial-quote { border-left-color: var(--sage); }
+
+    /* ---------- Section labels ---------- */
+    .section-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin: 2rem 0 0.5rem 0;
     }
 
-    /* opportunity card */
-    .opp-card {
-        background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
-        padding: 1rem 1.25rem; margin-bottom: 0.75rem;
-    }
-    .opp-meta { color: #6b7280; font-size: 0.85rem; margin-bottom: 0.5rem; }
-    .opp-tag {
-        display: inline-block; background: #eef2ff; color: #4338ca;
-        padding: 2px 8px; border-radius: 999px; font-size: 0.75rem;
-        font-weight: 500; margin-right: 4px;
-    }
-    .opp-tag.churn { background: #fef2f2; color: #b91c1c; }
-    .opp-tag.positive { background: #ecfdf5; color: #047857; }
-    .opp-card.positive { border-left: 3px solid #10b981; }
-
-    .quote.positive {
-        border-left-color: #10b981; background: #f0fdf4;
-    }
-
-    .quote {
-        font-style: italic; color: #374151;
-        border-left: 3px solid #818cf8; background: #f9fafb;
-        padding: 0.55rem 0.85rem; margin: 0.35rem 0;
-        border-radius: 0 6px 6px 0; font-size: 0.95rem;
-    }
-
-    /* footer */
-    .footer {
-        border-top: 1px solid #e5e7eb; margin-top: 3rem; padding-top: 1rem;
-        color: #6b7280; font-size: 0.85rem; text-align: center;
-    }
-    .footer a { color: #6366f1; text-decoration: none; }
-
-    /* hide Streamlit chrome that screams 'this is a Streamlit app' */
+    /* ---------- Hide Streamlit chrome ---------- */
     #MainMenu      { visibility: hidden; }
     footer         { visibility: hidden; }
     .stDeployButton { display: none !important; }
     [data-testid="stStatusWidget"] { display: none !important; }
     [data-testid="stToolbar"] { display: none !important; }
+    [data-testid="stHeader"] { background: transparent; }
 
-    /* tighten KPI numbers + bring back contrast */
-    [data-testid="stMetricValue"] {
-        font-size: 2rem !important; font-weight: 600; color: #111827;
+    /* ---------- Tabs as editorial nav ---------- */
+    [data-baseweb="tab-list"] {
+        border-bottom: 1px solid var(--rule) !important;
+        gap: 2.25rem;
     }
-    [data-testid="stMetricLabel"] {
-        font-size: 0.85rem; color: #6b7280;
+    [data-baseweb="tab"] {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.12em !important;
+        text-transform: uppercase !important;
+        color: var(--muted) !important;
+        padding: 0.75rem 0 !important;
+        background: transparent !important;
     }
-    [data-testid="stMetricDelta"] {
-        font-size: 0.8rem;
+    [data-baseweb="tab"][aria-selected="true"] { color: var(--ink) !important; }
+    [data-baseweb="tab-highlight"] {
+        background: var(--terracotta) !important;
+        height: 2px !important;
     }
 
-    /* less aggressive default padding */
+    /* ---------- Sidebar ---------- */
+    [data-testid="stSidebar"] {
+        background: #f5efe1;
+        border-right: 1px solid var(--rule);
+    }
+    [data-testid="stSidebar"] h1 {
+        font-family: 'Fraunces', serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    [data-testid="stSidebar"] label {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.72rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.12em !important;
+        text-transform: uppercase !important;
+        color: var(--ink-soft) !important;
+    }
+
+    /* ---------- Form widgets ---------- */
+    [data-baseweb="select"] > div {
+        background: var(--bg) !important;
+        border-color: var(--rule) !important;
+    }
+    [data-baseweb="tag"] {
+        background: var(--quote-bg) !important;
+        border: 1px solid var(--rule) !important;
+        color: var(--ink) !important;
+    }
+
+    /* ---------- Buttons ---------- */
+    .stButton > button, .stDownloadButton > button {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.78rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.1em !important;
+        text-transform: uppercase !important;
+        background: var(--ink) !important;
+        color: var(--bg) !important;
+        border: none !important;
+        border-radius: 1px !important;
+        padding: 0.5rem 1rem !important;
+    }
+    .stButton > button:hover, .stDownloadButton > button:hover {
+        background: var(--terracotta) !important;
+        color: var(--bg) !important;
+    }
+
+    /* ---------- Markdown ---------- */
+    .stMarkdown p, .stMarkdown li {
+        font-family: 'Inter', sans-serif;
+        color: var(--ink-soft);
+        line-height: 1.65;
+    }
+    .stMarkdown blockquote {
+        border-left: 2px solid var(--terracotta);
+        padding-left: 1.25rem;
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--ink);
+    }
+    .stMarkdown code {
+        background: var(--quote-bg) !important;
+        color: var(--terracotta) !important;
+        font-size: 0.85rem !important;
+        padding: 1px 6px !important;
+        border-radius: 2px !important;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+        font-family: 'Inter', sans-serif;
+        border-top: 1px solid var(--rule);
+        margin-top: 4rem;
+        padding-top: 1.5rem;
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+    }
+    .footer a { color: var(--terracotta); text-decoration: none; border-bottom: 1px solid var(--terracotta); }
+    .footer .sep { margin: 0 0.6rem; color: var(--rule); }
+
+    /* ---------- Container ---------- */
     .block-container {
-        padding-top: 1.5rem; padding-bottom: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+        max-width: 1080px;
     }
     </style>
     """,
@@ -127,41 +335,49 @@ def category_labels() -> dict[str, str]:
     return {c.key: c.label for c in load_taxonomy()}
 
 
-# -------------- hero --------------
+# -------------- editorial hero --------------
+_today = date.today()
+_issue_num = (_today - date(2026, 5, 1)).days // 7 + 1
+_week_label = f"{_today.strftime('%B')} {_today.day}, {_today.year}"
 st.markdown(
-    """
-    <div class="hero">
+    f"""
+    <div class="editorial-hero">
+        <div class="masthead">Vol. 1 &nbsp;·&nbsp; Issue {_issue_num} &nbsp;·&nbsp; Week of {_week_label}</div>
         <h1>Defector</h1>
-        <p>Multilingual marketing intelligence + copy engine. We listen to what
-        parents say when they leave competing parenting and baby-product apps —
-        across 30 apps, 7 markets, and 3 languages — and turn it into ad copy,
-        SEO briefs, and influencer talking points for the Kinedu growth team.</p>
-        <div>
-            <span class="pill">🇺🇸 🇲🇽 🇧🇷 🇦🇷 🇨🇴 🇨🇱 🇵🇪</span>
-            <span class="pill">EN · ES · PT</span>
-            <span class="pill">Refreshed weekly · zero cost</span>
+        <div class="lede">
+            A weekly reading of what parents say about every parenting app —
+            in the markets that matter, in the languages they speak,
+            with the words Kinedu should reply with.
+        </div>
+        <div class="byline">
+            US <span class="sep">·</span> MX <span class="sep">·</span> BR <span class="sep">·</span> AR <span class="sep">·</span> CO <span class="sep">·</span> CL <span class="sep">·</span> PE
+            &nbsp;&nbsp;&nbsp;
+            EN <span class="sep">·</span> ES <span class="sep">·</span> PT
+            &nbsp;&nbsp;&nbsp;
+            <span style="color: var(--terracotta);">Refreshed every Monday</span>
         </div>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-with st.expander("About this project · how it works"):
+with st.expander("On method"):
     st.markdown(
         """
-        **What this is.** A continuously-refreshed view of what parents publicly
-        complain about when they leave competing apps — Lovevery, BabySparks,
-        BabyCenter, Pampers Rewards, Huggies, Wonder Weeks, and 24 others — and
-        what Kinedu should say to win those parents.
+        Defector reads thirty parenting and baby-product apps every week — Lovevery,
+        BabyCenter, BabySparks, Pampers Rewards, Huggies, Wonder Weeks, and twenty-four
+        others. It pulls public reviews from Apple's App Store and Google Play across
+        seven countries in English, Spanish, and Portuguese.
 
-        **How it works.**
-        1. *Scrape.* Pull 1★/2★ reviews from the Apple App Store + Google Play across 7 markets.
-        2. *Classify.* A Gemini-based classifier sorts each review into one of 11 defection categories with ~85% accuracy.
-        3. *Synthesize.* For each top opportunity, generate ad copy, an SEO comparison brief, and influencer talking points — all in the parents' own language.
-        4. *Refresh.* The whole pipeline runs weekly via GitHub Actions.
+        A Gemini-based classifier sorts each review by topic (price, content, bugs,
+        features, support, and so on) and by sentiment. The synthesizer then writes
+        four artifacts: a memo on where parents are leaving competitors, a parallel
+        memo on what competitors are winning at, ad copy aimed at the defectors, and
+        SEO and influencer briefs for the content and partnership teams.
 
-        **Public data only.** No internal Kinedu data used. The whole system is
-        reproducible from a public GitHub repo.
+        Accuracy of the classifier is around 85% against a hand-labeled set of fifty
+        reviews. The system uses no internal Kinedu data, runs on free LLM tiers, and
+        refreshes itself via a Monday cron with no human in the loop.
         """
     )
 
@@ -221,21 +437,27 @@ if only_churn:
     filtered = filtered[filtered["is_churn_signal"] == True]  # noqa: E712
 
 
-# -------------- header KPIs --------------
+# -------------- editorial reading line (replaces KPI tiles) --------------
 total_reviews = len(filtered)
-classified_count = int(filtered["category_key"].notna().sum())
 neg_count = int(filtered["sentiment"].isin(["negative", "mixed"]).sum())
 pos_count = int(filtered["sentiment"].eq("positive").sum())
 churn_count = int(filtered["is_churn_signal"].fillna(False).sum())
 apps_count = filtered["app_name"].nunique()
 markets_count = filtered["country"].nunique()
 
-col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric("Reviews", f"{total_reviews:,}", help="Reviews in the selected window + filters.")
-col2.metric("Switching signal", f"{neg_count:,}", help="Negative + mixed classified reviews — switching opportunities.")
-col3.metric("Strength signal", f"{pos_count:,}", help="Positive classified reviews — what competitors do well.")
-col4.metric("Churn / loyalty", f"{churn_count:,}", help="Reviews where the parent explicitly cancelled/switched (or switched TO this app).")
-col5.metric("Apps × Markets", f"{apps_count} × {markets_count}", help="Distinct apps and country codes in this window.")
+st.markdown(
+    f"""
+    <div class="reading-line">
+        Reading <span class="num">{total_reviews:,}</span> reviews across
+        <span class="num">{apps_count}</span> apps in
+        <span class="num">{markets_count}</span> markets.
+        <span class="neg">{neg_count:,}</span> reasons to leave,
+        <span class="pos">{pos_count:,}</span> reasons to stay,
+        <span class="num">{churn_count}</span> parents who said it out loud.
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 # -------------- tabs --------------
@@ -312,29 +534,29 @@ with tab_opps:
         )
         for rank, (_, r) in enumerate(opps.iterrows(), 1):
             cat_label = labels.get(r["category_key"], r["category_key"])
-            churn_badge = (
-                f'<span class="opp-tag churn">{int(r["churn_signals"])} churn signals</span>'
+            churn_line = (
+                f' · <span class="num">{int(r["churn_signals"])}</span> said they cancelled'
                 if int(r["churn_signals"]) > 0 else ""
             )
             st.markdown(
                 f"""
-                <div class="opp-card">
-                    <div class="opp-meta">#{rank} · {r['country'].upper()} · {cat_label}</div>
-                    <div style="font-size: 1.15rem; font-weight: 600; margin-bottom: 0.4rem;">
-                        {r['app_name']} — {cat_label}
-                    </div>
-                    <div style="margin-bottom: 0.6rem;">
-                        <span class="opp-tag">{int(r['volume'])} complaints</span>
-                        {churn_badge}
-                        <span class="opp-tag">{r['dominant_sub_reason'] or '—'}</span>
+                <div class="brief">
+                    <div class="rank">{rank}</div>
+                    <div>
+                        <div class="kicker">{r['country'].upper()} &nbsp;·&nbsp; {cat_label}</div>
+                        <h3>{r['app_name']}</h3>
+                        <div class="stats">
+                            <span class="num">{int(r['volume'])}</span> complaints in this category{churn_line}.<br>
+                            Most common: <em>{r['dominant_sub_reason'] or '—'}</em>
+                        </div>
                     </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-            with st.expander("Show verbatim parent voice + generated assets", expanded=False):
+            with st.expander("In their own words + generated assets", expanded=False):
                 for q in r["quotes"]:
-                    st.markdown(f'<div class="quote">"{q}"</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="editorial-quote">"{q}"</div>', unsafe_allow_html=True)
                 # Link to generated outputs for this opportunity, if they exist
                 slug_root = f"{r['app_name']}_{r['country']}_{r['category_key']}".lower().replace(" ", "_")
                 matches = []
@@ -384,29 +606,29 @@ with tab_strengths:
         )
         for rank, (_, r) in enumerate(strengths.iterrows(), 1):
             cat_label = labels.get(r["category_key"], r["category_key"])
-            loyalty_badge = (
-                f'<span class="opp-tag positive">{int(r["loyalty_signals"])} loyalty signals</span>'
+            loyalty_line = (
+                f' · <span class="num">{int(r["loyalty_signals"])}</span> said they switched here'
                 if int(r["loyalty_signals"]) > 0 else ""
             )
             st.markdown(
                 f"""
-                <div class="opp-card positive">
-                    <div class="opp-meta">#{rank} · {r['country'].upper()} · {cat_label}</div>
-                    <div style="font-size: 1.15rem; font-weight: 600; margin-bottom: 0.4rem;">
-                        {r['app_name']} is winning on — {cat_label}
-                    </div>
-                    <div style="margin-bottom: 0.6rem;">
-                        <span class="opp-tag positive">{int(r['volume'])} rave reviews</span>
-                        {loyalty_badge}
-                        <span class="opp-tag positive">{r['dominant_sub_reason'] or '—'}</span>
+                <div class="brief positive">
+                    <div class="rank">{rank}</div>
+                    <div>
+                        <div class="kicker">{r['country'].upper()} &nbsp;·&nbsp; {cat_label}</div>
+                        <h3>{r['app_name']} is winning on this</h3>
+                        <div class="stats">
+                            <span class="num">{int(r['volume'])}</span> parents said so this period{loyalty_line}.<br>
+                            Most common praise: <em>{r['dominant_sub_reason'] or '—'}</em>
+                        </div>
                     </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-            with st.expander("Show verbatim parent voice", expanded=False):
+            with st.expander("In their own words", expanded=False):
                 for q in r["quotes"]:
-                    st.markdown(f'<div class="quote positive">"{q}"</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="editorial-quote">"{q}"</div>', unsafe_allow_html=True)
 
     # Link to the strengths memo if it exists
     strengths_dir = ROOT / "outputs" / "strengths"
@@ -492,14 +714,13 @@ with tab_outputs:
 
 
 # -------------- footer --------------
-import os as _os
-_gh = _os.getenv("GITHUB_REPO_URL", "https://github.com")
 st.markdown(
-    f"""
+    """
     <div class="footer">
-      Defector · built for the Kinedu AI Challenge · May 2026 ·
-      <a href="{_gh}" target="_blank">source on GitHub</a> ·
-      data refreshed weekly via GitHub Actions
+      Defector <span class="sep">·</span>
+      A weekly reading <span class="sep">·</span>
+      <a href="https://github.com/stronsop000/defector" target="_blank">Source on GitHub</a> <span class="sep">·</span>
+      Built for the Kinedu AI Challenge, May 2026
     </div>
     """,
     unsafe_allow_html=True,

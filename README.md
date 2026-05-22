@@ -11,7 +11,7 @@
   <a href="#"><img alt="Streamlit" src="https://img.shields.io/badge/dashboard-Streamlit-FF4B4B?logo=streamlit&logoColor=white"></a>
   <a href="#"><img alt="DuckDB" src="https://img.shields.io/badge/storage-DuckDB-FFF000?logo=duckdb&logoColor=black"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
-  <a href="#"><img alt="Live dashboard" src="https://img.shields.io/badge/dashboard-live-success?logo=streamlit&logoColor=white"></a>
+  <a href="https://defector.streamlit.app/"><img alt="Live dashboard" src="https://img.shields.io/badge/dashboard-live-success?logo=streamlit&logoColor=white"></a>
 </p>
 
 ---
@@ -22,8 +22,8 @@ Every week, thousands of parents publicly post **why** they're leaving Lovevery,
 
 Defector does. In **3 languages**, across **30 apps**, across **7 markets**, every week — and turns it into ad copy, SEO briefs, and influencer talking points the Kinedu growth team can ship on Monday morning.
 
-> 🔗 **Live dashboard:** _coming soon (Streamlit Cloud URL)_
-> 📊 **What it produces this week:** see `outputs/memos/`, `outputs/copy/`, `outputs/seo/`, `outputs/influencer/`
+> 🔗 **Live dashboard:** **https://defector.streamlit.app/**
+> 📊 **What it produces this week:** see `outputs/memos/`, `outputs/copy/`, `outputs/seo/`, `outputs/influencer/`, `outputs/strengths/`
 
 ---
 
